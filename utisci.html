@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Utisci gostiju · Mila Zlatibor</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --paper: #f3ede1; --paper-2: #eae1d1; --ink: #241d15; --ink-soft: #5f5345;
+    --pine: #2e5339; --pine-deep: #1f3b29; --moss: #6f8f5f; --amber: #c6792f;
+    --line: #d8ccb7; --card: #fbf7ee;
+    --display: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+    --body: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #16130e; --paper-2: #1f1a13; --ink: #f2e9d8; --ink-soft: #b6a890;
+      --pine: #86b081; --pine-deep: #a9cfa0; --moss: #8fae7d; --amber: #e2a360;
+      --line: #342c20; --card: #211b13; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #16130e; --paper-2: #1f1a13; --ink: #f2e9d8; --ink-soft: #b6a890;
+    --pine: #86b081; --pine-deep: #a9cfa0; --moss: #8fae7d; --amber: #e2a360;
+    --line: #342c20; --card: #211b13; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 700; margin: 0; line-height: 1.07; text-wrap: balance; }
+  p { margin: 0; }
+  img, svg { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .wrap { width: 100%; max-width: 1060px; margin-inline: auto; padding-inline: 22px; }
+
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav-in { display: flex; align-items: center; gap: 16px; height: 62px; }
+  .brand { font-family: var(--display); font-weight: 700; font-size: 1.34rem; display: flex; align-items: center; gap: 9px; text-decoration: none; color: inherit; }
+  .brand .dot { width: 22px; height: 22px; }
+  .nav-right { margin-left: auto; display: flex; align-items: center; gap: 18px; }
+  .back { text-decoration: none; color: var(--ink-soft); font-size: .95rem; }
+  .back:hover { color: var(--ink); }
+  .nav-cta { text-decoration: none; background: #ffffff; color: #1f3b29; padding: 9px 20px; border-radius: 999px; font-weight: 700; font-size: .92rem; white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,.18); border: 1px solid rgba(0,0,0,.06); transition: transform .15s, background .2s; }
+  .nav-cta:hover { background: #fff6e8; transform: translateY(-1px); }
+  :root[data-theme="dark"] .nav-cta, :root:not([data-theme="light"]) .nav-cta { background: #211b13; color: var(--ink); border-color: var(--line); }
+
+  .head { padding-block: clamp(44px, 7vw, 76px) clamp(10px, 2vw, 20px); }
+  .sec-label { text-transform: uppercase; letter-spacing: .2em; font-size: .74rem; font-weight: 700; color: var(--amber); margin-bottom: 12px; }
+  .head h1 { font-size: clamp(2.1rem, 5.4vw, 3.4rem); }
+  .head .lead { color: var(--ink-soft); font-size: clamp(1.05rem, 2.2vw, 1.2rem); max-width: 58ch; margin-top: 16px; }
+
+  .summary { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 28px; padding: 20px 24px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+  .summary .big { font-family: var(--display); font-weight: 700; font-size: 2.6rem; color: var(--pine); font-variant-numeric: tabular-nums; line-height: 1; }
+  .stars { color: var(--amber); letter-spacing: 2px; }
+  .summary .sub { color: var(--ink-soft); font-size: .92rem; }
+  .summary .sep { width: 1px; align-self: stretch; background: var(--line); }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-block: 36px clamp(50px, 8vw, 86px); }
+  .review { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px; break-inside: avoid; }
+  .review .stars { font-size: .95rem; }
+  .review .quote { font-size: 1.02rem; line-height: 1.6; }
+  .review .who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+  .review .avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--pine); color: #f6f2e8; display: grid; place-items: center; font-family: var(--display); font-weight: 700; flex: none; }
+  .review .name { font-weight: 650; font-size: .96rem; }
+  .review .meta { font-size: .82rem; color: var(--ink-soft); }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+  .cta-band { background: var(--pine-deep); border-radius: 24px; padding: clamp(30px, 5vw, 50px); text-align: center; color: #f1ead9; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .cta-band h2 { color: #fdfaf2; font-size: clamp(1.6rem, 3.6vw, 2.2rem); }
+  .cta-band p { color: #cdd8c4; max-width: 46ch; }
+  .btn { text-decoration: none; display: inline-flex; align-items: center; gap: 9px; padding: 13px 24px; border-radius: 999px; font-weight: 650; font-size: 1rem; transition: transform .15s, filter .2s; }
+  .btn-primary { background: var(--amber); color: #241206; box-shadow: 0 8px 24px rgba(198,121,47,.35); }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .note { font-size: .86rem; color: var(--ink-soft); font-style: italic; text-align: center; padding-bottom: 30px; }
+
+  footer { border-top: 1px solid var(--line); padding-block: 34px; }
+  .foot-in { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+  .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .foot-links a { color: var(--ink-soft); text-decoration: none; font-size: .9rem; }
+  .foot-links a:hover { color: var(--ink); }
+  .copyright { color: var(--ink-soft); font-size: .84rem; width: 100%; margin-top: 8px; }
+  /* ---------- MOBILE (optimizovano za ~375px) ---------- */
+  @media (max-width: 430px) {
+    body { font-size: 16px; }
+    .wrap { padding-inline: 16px; }
+    .nav-in { height: 56px; gap: 10px; }
+    .brand { font-size: 1.18rem; }
+    .nav-right { gap: 12px; }
+    .back { font-size: .88rem; }
+    .nav-cta { padding: 8px 15px; font-size: .85rem; }
+    .head { padding-block: 34px 8px; }
+    .head h1 { font-size: 1.95rem; }
+    .summary { gap: 14px 18px; padding: 18px 18px; }
+    .summary .sep { display: none; }
+    .summary .big { font-size: 2.2rem; }
+    .review { padding: 20px; }
+    .cta-band { border-radius: 20px; padding: 28px 22px; }
+    .foot-in { justify-content: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html">
+      <svg class="dot" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 2 21h20L12 2Z" fill="var(--pine)"/><path d="M12 8.5 7.6 17h8.8L12 8.5Z" fill="var(--amber)"/></svg>
+      Mila
+    </a>
+    <div class="nav-right">
+      <a class="back" href="index.html">← Nazad na sajt</a>
+      <a class="nav-cta" href="index.html#rezervacija">Rezerviši</a>
+    </div>
+  </div>
+</nav>
+
+<header class="head">
+  <div class="wrap">
+    <div class="sec-label">Utisci gostiju</div>
+    <h1>Šta kažu oni koji su već boravili u Mili</h1>
+    <p class="lead">Iskustva gostiju sa Booking-a, Airbnb-a i Google-a — sakupljena na jednom mestu.</p>
+    <div class="summary">
+      <div>
+        <div class="big">4,9</div>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="sep"></div>
+      <div>
+        <div class="stars" style="font-size:1.1rem">★★★★★</div>
+        <div class="sub">na osnovu 38 ocena gostiju</div>
+      </div>
+      <div class="sep"></div>
+      <div>
+        <div style="font-weight:700">98%</div>
+        <div class="sub">gostiju bi se vratilo</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid">
+    <div class="review"><span class="stars">★★★★★</span><p class="quote">„Savršen beg od grada. Tišina, miris borovine i pogled kroz onaj veliki stakleni zabat — ujutru smo pili kafu na terasi i nismo želeli da odemo."</p><div class="who"><span class="avatar">JM</span><div><div class="name">Jelena M.</div><div class="meta">Beograd · avgust 2026</div></div></div></div>
+    <div class="review"><span class="stars">★★★★★</span><p class="quote">„Kućica je još lepša uživo nego na slikama. Sve je od drveta, toplo i čisto, a jacuzzi uveče pod zvezdama je nešto posebno. Vraćamo se sigurno."</p><div class="who"><span class="avatar">SN</span><div><div class="name">Stefan N.</div><div class="meta">Novi Sad · jul 2026</div></div></div></div>
+    <div class="review"><span class="stars">★★★★★</span><p class="quote">„Domaćin je bio predusretljiv, sve je bilo spremno za naš dolazak. Lokacija je mirna, a do centra i gondole se stigne za par minuta. Preporuka od srca."</p><div class="who"><span class="avatar">MK</span><div><div class="name">Marija K.</div><div class="meta">Kragujevac · septembar 2026</div></div></div></div>
+    <div class="review"><span class="stars">★★★★★</span><p class="quote">„Proveli smo produženi vikend i bilo je taman — udobno za dvoje, sve čisto i uredno. Peć je super za hladnije večeri. Jedva čekamo da dođemo zimi."</p><div class="who"><span class="avatar">NP</span><div><div class="name">Nikola P.</div><div class="meta">Čačak · jun 2026</div></div></div></div>
+    <div class="review"><span class="stars">★★★★★</span><p class="quote">„Idealno za odmor sa psom — ima mesta za trčanje, a kućica je prostranija nego što izgleda. Preporučujem svima kojima treba mir i priroda."</p><div class="who"><span class="avatar">AT</span><div><div class="name">Ana T.</div><div class="meta">Beograd · maj 2026</div></div></div></div>
+    <div class="review"><span class="stars">★★★★☆</span><p class="quote">„Prelepo mesto i odlična komunikacija. Jedini minus je što smo ostali samo dve noći — premalo za ovakav mir. Sledeći put duže!"</p><div class="who"><span class="avatar">VJ</span><div><div class="name">Vladimir J.</div><div class="meta">Niš · avgust 2026</div></div></div></div>
+    <div class="review"><span class="stars">★★★★★</span><p class="quote">„Romantičan vikend za nas dvoje. Enterijer je topao i lep, a onaj pogled na planinu iz dnevne sobe je nešto što se pamti."</p><div class="who"><span class="avatar">IK</span><div><div class="name">Ivana K.</div><div class="meta">Zemun · septembar 2026</div></div></div></div>
+    <div class="review"><span class="stars">★★★★★</span><p class="quote">„Sve preporuke! Kuhinja ima sve što treba, krevet je udoban, a jutarnja magla oko kućice izgleda kao iz filma. Hvala domaćinu na svemu."</p><div class="who"><span class="avatar">DM</span><div><div class="name">Dušan M.</div><div class="meta">Užice · jul 2026</div></div></div></div>
+    <div class="review"><span class="stars">★★★★★</span><p class="quote">„Bili smo u oktobru, boje šume su bile neverovatne. Kućica je mirna, topla i baš onakva kako izgleda na slikama. Pet zvezdica bez razmišljanja."</p><div class="who"><span class="avatar">TS</span><div><div class="name">Tamara S.</div><div class="meta">Beograd · oktobar 2026</div></div></div></div>
+  </div>
+
+  <div class="cta-band">
+    <h2>Pridruži se gostima koji su već uživali u Mili</h2>
+    <p>Proveri slobodne termine i rezerviši svoj boravak — sledeći utisak može biti tvoj.</p>
+    <a class="btn btn-primary" href="index.html#rezervacija">Proveri dostupnost</a>
+  </div>
+
+  <p class="note">Primeri utisaka — zameni ih pravim recenzijama gostiju sa Booking-a, Airbnb-a ili Google-a.</p>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <a class="brand" href="index.html" style="font-size:1.15rem">
+      <svg class="dot" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 2 21h20L12 2Z" fill="var(--pine)"/><path d="M12 8.5 7.6 17h8.8L12 8.5Z" fill="var(--amber)"/></svg>
+      Mila
+    </a>
+    <div class="foot-links">
+      <a href="index.html#o-nama">O kućici</a>
+      <a href="index.html#galerija">Galerija</a>
+      <a href="index.html#utisci">Utisci</a>
+      <a href="index.html#rezervacija">Rezervacija</a>
+    </div>
+    <div class="copyright">© 2026 Mila · Glamping na Zlatiboru</div>
+  </div>
+</footer>
+
+</body>
+</html>
